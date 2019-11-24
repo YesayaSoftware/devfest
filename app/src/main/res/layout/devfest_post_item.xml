@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="software.yesaya.devfest.data.domain.Post" />
+
+        <variable
+            name="postCallback"
+            type="software.yesaya.devfest.ui.posts.item.PostItemClick" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_well"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_well"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/small_padding">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{post.title}"
+                    android:textColor="@color/primary_text"
+                    tools:text="@string/title" />
+
+                <TextView
+                    android:id="@+id/tvBody"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/def_small_margin"
+                    android:maxLines="2"
+                    android:text="@{post.content}"
+                    tools:text="@string/content" />
+
+                <RelativeLayout
+                    android:id="@+id/rlUserDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/def_small_margin">
+
+                    <ImageView
+                        android:id="@+id/ivAvatar"
+                        android:layout_width="@dimen/def_small_avatar_size"
+                        android:layout_height="@dimen/def_small_avatar_size"
+                        android:contentDescription="@string/user_image"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/logo"
+                        tools:background="@drawable/logo" />
+
+                    <TextView
+                        android:id="@+id/tvAuthorName"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/ivAvatar"
+                        android:layout_toRightOf="@+id/ivAvatar"
+                        android:padding="@dimen/card_padding"
+                        android:text="@string/author"
+                        tools:ignore="RtlHardcoded"
+                        tools:text="@string/author" />
+
+                    <TextView
+                        android:id="@+id/tvPublishDate"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@{post.publish_date}"
+                        android:layout_marginLeft="@dimen/def_small_avatar_size"
+                        android:layout_toEndOf="@+id/tvAuthorName"
+                        android:layout_toRightOf="@+id/tvAuthorName"
+                        android:padding="@dimen/card_padding"
+                        tools:ignore="RtlHardcoded"
+                        tools:text="@string/author" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvKnowMore"
+                    style="@style/actionable_text"
+                    android:text="@string/know_more" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/clickableOverlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> postCallback.onClick(post)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

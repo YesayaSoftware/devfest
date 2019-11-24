@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DevFest</string>
+    <string name="user_image">User\'s Avatar Image</string>
+
+    <string name="know_more">More ></string>
+    <string name="author">Yesaya R. Athuman</string>
+    <string name="title">Title to post</string>
+    <string name="content">Body to post</string>
+</resources>
